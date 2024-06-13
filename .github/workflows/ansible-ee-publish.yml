@@ -38,8 +38,8 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install ansible-builder
-        run: pip3 install ansible-builder==3.0.1
+      - name: Install build dependencies
+        run: pip3 install ansible-builder==3.0.1 setuptools
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
