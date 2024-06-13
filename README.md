@@ -7,5 +7,6 @@ This new version of ansible-builder addresses a lot of the issues with not being
 ## Building
 
 ```bash
+pip install ansible-builder
 ansible-builder build -t awx-network-ee:latest -v 3
 ```

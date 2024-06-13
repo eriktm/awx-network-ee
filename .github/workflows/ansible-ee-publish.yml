@@ -1,14 +1,14 @@
 name: Publish AWX EE image
 
 on:
-  schedule:
-    - cron: '26 22 * * *'
+  # schedule:
+  #   - cron: "26 22 * * *"
   push:
-    branches: [ "dev" ]
+    branches: ["dev"]
     # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
+    tags: ["v*.*.*"]
   pull_request:
-    branches: [ "dev" ]
+    branches: ["dev"]
 
 env:
   # Use docker.io for Docker Hub if empty
@@ -16,10 +16,8 @@ env:
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
 
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -32,23 +30,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Workaround: https://github.com/docker/build-push-action/issues/461
       - name: Setup Docker buildx
-        uses: docker/setup-buildx-action@79abd3f86f79a9d68a23c75a09a9a85889262adf
+        uses: docker/setup-buildx-action@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: "3.12"
 
       - name: Install ansible-builder
-        run: pip3 install ansible-builder==3.0.0
+        run: pip3 install ansible-builder==3.0.1
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
+        uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
