@@ -1,6 +1,8 @@
 name: Publish AWX EE image
 
 on:
+  # make it possible to run manually
+  workflow_dispatch:
   # schedule:
   #   - cron: "26 22 * * *"
   push:
