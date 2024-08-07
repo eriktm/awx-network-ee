@@ -12,6 +12,7 @@ collections:
   - name: community.general
   - name: community.mysql
   - name: community.postgresql
+  - name: fortinet.fortianalyzer
   - name: fortinet.fortimanager
   - name: fortinet.fortios
   - name: infoblox.nios_modules
